@@ -1,0 +1,74 @@
+{% extends "fashionshop/base.html" %}
+{% block all-item %}
+
+{% load static %}
+
+<title>Profile</title>
+<link href="{% static '/css/profile.css' %}" rel="stylesheet">
+<style>
+    .secondul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      width: 20%;
+      background-color: #9f9f9f;
+      position:relative;
+      height: 100%;
+      overflow: auto;
+    }
+    
+    li a {
+      display: block;
+      color: #fff;
+      padding: 8px 16px;
+      text-decoration: none;
+    }
+    
+    li a.active {
+      background-color: #ff084e;
+      color: white;
+    }
+    
+    li a:hover:not(.active) {
+      background-color: #3a3a3a;
+      color: white;
+    }
+    table, th, td {
+  border:1px solid black;
+  }
+    </style>
+<body>
+    <div class="cart_area section_padding_100 clearfix">
+                    
+                        <ul class="secondul">
+                            <li><a  href="{% url 'my_profile' %}">Account Information</a></li>
+                            <li><a class="active" href="{% url 'order' %}">Recent Orders</a></li>
+                            <li><a href="{% url 'address' %}">Saved Address</a></li>
+                        </ul>
+                        <div class="css-page">
+                            <h1 class="title">Recent Orders</h1>
+                            <hr class="solid">
+              
+                            <table class='table_text' style="width:100%">
+                              <tr>
+                                  <td><span><strong>Order Date</strong></span></td>
+                                  <td><span><strong>Order Number</strong></span></td>
+                                  <td><span><strong>Tarcking Number</strong></span></td>
+                                  <td><span><strong>Status</strong></span></td>
+                              </tr>
+                              <tr>
+                                  <td><span>{{order.creation_time}}</span>
+                                  <td><span>{{order.transaction_id}}</span>
+                                  <td><span>{{order.tarcking_num}}</span>
+                                  <td><span> <a href="{% url 'detail' %}" class="btn">Detail</a></span></td> 
+                              </tr>
+                          </table>
+
+
+                            <hr class="solid1">
+                        </div>
+    </div>
+</body>
+
+
+{% endblock %}

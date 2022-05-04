@@ -1,0 +1,144 @@
+.section-header {
+  position: relative;
+  padding-top: 6rem;
+  padding-bottom: 3rem;
+}
+.section-image {
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+}
+.bg-primary {
+  background-color: #fff !important;
+}
+
+.pb-0,
+.py-0 {
+  padding-bottom: 0 !important;
+}
+
+
+.css-page {
+    margin-left:25%;
+    padding:1px 16px;
+    height:1000px;
+
+}
+
+h1 {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 32px;
+    font-family: georgia, times, serif;
+   font-weight: bold;
+}
+
+hr.solid {
+    border-top: 2px solid #000;
+  }
+
+hr.solid1 {
+    border-top: 1px solid #ccc;
+  }
+
+.text {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    font-size: 24px;
+    display: block;
+    color:#000;
+    word-spacing: 20px;
+    font-family: georgia, times, serif;
+}
+
+.input_text {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    font-size: 24px;
+    display: block;
+    color:#000;
+    word-spacing: 5px;
+    font-family: georgia, times, serif;
+}
+.css-7i38uj {
+    margin:10px;
+    padding: 4px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    font-weight: 700;
+}
+
+.css-1xy0oe1 {
+    flex: 1 1 0%;
+    padding-left: 6px;
+    padding-right: 6px;
+    min-width: 0px;
+    display: block;
+}
+
+.css-1ursrzc {
+    flex-basis: auto;
+    padding-left: 6px;
+    padding-right: 6px;
+    min-width: 0px;
+    width: 25%;
+    display: block;
+}
+
+.title{
+    font-size: 48px;
+    font-family: georgia, times, serif;
+    font-weight:400;
+    text-size-adjust: 100%;
+}
+
+.col-lg-8 {
+    flex: 0 0 66.66667%;
+    max-width: 66.66667%;
+}
+
+.rounded-circle {
+    margin-left:25%;
+    border-radius: 50% !important;
+    padding: 0.25rem;
+    background-color: #e6e7ee;
+    border: 0.0625rem solid #e6e7ee;
+    box-shadow: 0 1px 2px rgba(38, 40, 51, 0.075);
+    max-width: 100%;
+    height: 20rem;
+}
+
+.table_text {
+    font-size: 24px;
+    font-family: georgia, times, serif;
+    font-weight:300;
+    text-size-adjust: 80%;
+    
+}
+
+.css-1fu7x4l {
+    font-size: 16px;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    position: relative;
+    vertical-align: text-bottom;
+    flex-shrink: 0;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #44476A;
+    text-align: center;
+    background-color: #e6e7ee;
+    padding: 0.55rem 0.95rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.55rem;
+}
+
+.btn:hover {
+    color: white;
+    background-color: #93a5be;
+}

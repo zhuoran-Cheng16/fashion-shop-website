@@ -1,0 +1,69 @@
+{% extends "fashionshop/base.html" %}
+{% block all-item %}
+
+{% load static %}
+
+<title>Profile</title>
+<link href="{% static '/css/profile.css' %}" rel="stylesheet">
+<style>
+  .secondul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 20%;
+    background-color: #9f9f9f;
+    position: relative;
+    height: 100%;
+    overflow: auto;
+  }
+
+  li a {
+    display: block;
+    color: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+
+  li a.active {
+    background-color: #ff084e;
+    color: white;
+  }
+
+  li a:hover:not(.active) {
+    background-color: #3a3a3a;
+    color: white;
+  }
+</style>
+
+<body>
+  <div class="cart_area section_padding_100 clearfix">
+
+    <ul class="secondul">
+      <li><a class="active" href="{% url 'my_profile' %}">Account Information</a></li>
+      <li><a href="{% url 'order' %}">Recent Orders</a></li>
+      <li><a href="{% url 'address' %}">Saved Address</a></li>
+    </ul>
+    <div class="css-page" style="margin-left:25%;padding:1px 16px;height:1000px;">
+
+      <h1 class="title">Account Information</h1>
+      <hr class="solid1">
+      <div class="text">Name {{request.user.username}}</div>
+      <hr class="solid1">
+      <div class="text">Email {{request.user.email}}</div>
+      <hr class="solid1">
+      <div class="text">Password ****
+        <a href="{% url 'reset_pw' %}" class="font-weight-bold">
+          <button class="btn btn-primary" type="submit">Reset Password</button></a>
+      </div>
+      <hr class="solid1">
+      <div>
+        <a href="{% url 'logout' %}">
+          <button class="btn btn-primary">Logout</button>
+       </a>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+
+{% endblock %}

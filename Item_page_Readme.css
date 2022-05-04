@@ -1,0 +1,23 @@
+  /* ----------------------------------------------------------
+    :: Template Name: Karl - Fashion Ecommerce Template
+    :: Author: Colorlib
+    :: Author URL: https://colorlib.com
+    ---------------------------------------------------------- */
+
+    /* -------------------------------------------------
+    ============ PLACE YOUR CUSTOM CSS HERE ============
+    ------------------------------------------------- */
+  Item page:
+
+  css:
+
+    Item page used two outside source css file.
+    1. static/fasionshop/css/core-style.css (source: https://colorlib.com )
+    2. static/fasionshop/css/bootstrap.min ( a popular library named bootstrap)
+
+  js:
+
+    Item page used two outside source js file.
+
+    1. static/fashionshop/js/bootstrap.min.js' ( a popular library named bootstrap)
+    1. static/fashionshop/js/jquery/jquery-2.2.4.min.js' ( jquery library installed)

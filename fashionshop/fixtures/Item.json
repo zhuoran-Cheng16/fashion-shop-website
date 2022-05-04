@@ -1,0 +1,25 @@
+[
+  {
+    "model": "fashionshop.Item",
+    "pk": 1,
+    "fields": {
+      "item_name": "1461 Smooth Leather Platform Shoes",
+      "description": "Material: A twist on the classic Dr. Martens leather: durable, with a smooth and polished finish.",
+      "category_gender": "women",
+      "category_genre": "shoes",
+      "price": "130"
+    }
+  },
+
+    {
+    "model": "fashionshop.Item",
+    "pk": 1,
+    "fields": {
+      "item_name": 'Grey De-Velop-FS Denim Jacket',
+      "description": 'Padded and quilted stretch denim jacket.',
+      "category_gender": "women",
+      "category_genre": "top",
+      "price": "200"
+    }
+  }
+]

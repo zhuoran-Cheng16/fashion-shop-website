@@ -1,0 +1,21 @@
+#textbox {
+    display: flex;
+    justify-content: space-between;
+
+  }
+
+#review-add-button{
+    background-color:#ff084e;
+    border: 0px;
+    padding: 10px 15px;
+    font-size: 18px;
+}
+#review-hide{
+    background-color:#ff084e;
+    border: 0px;
+    padding: 10px 15px;
+    font-size: 18px;
+}
+
+
+

@@ -1,0 +1,506 @@
+.rating {
+    display: inline-block;
+    width: 100%;
+    margin-top: 40px;
+    padding-top: 40px;
+    text-align: center;
+  }
+ 
+  .active {
+    color: #2EBDD1;
+  }
+
+  .min-vh-100 {
+    min-height: 100vh;
+    display: flex;
+    background-color: #fff;
+    align-items: center;
+  }
+
+  .container {
+    min-width: 992px;
+  }
+
+  .justify-content-center {
+    justify-content: center;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+
+  .col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+  .col-md-8 {
+    flex: 0 0 66.66667%;
+    max-width: 66.66667%;
+  }
+
+  .col-lg-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0.0625rem solid rgba(243, 247, 250, 0.05);
+    border-radius: 0.55rem;
+    background-color: #e6e7ee !important;
+    box-shadow: 6px 6px 12px #b8b9be, -6px -6px 12px #ffffff !important;
+    border-color: #D1D9E6 !important;
+    padding: 1.5rem !important;
+    margin: 1%;
+
+} 
+
+.card .card-header {
+  background: transparent;
+  text-align: center;
+  padding-bottom: 0;
+}
+
+.font_title {
+    margin-bottom: 0;
+    font-size: 1.25rem;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  padding: 1.5rem;
+  
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.mt-4,
+.my-4 {
+    transition: all 0.2s ease;
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #44476A;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 0.0625rem solid transparent;
+  padding: 0.55rem 0.95rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.55rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.btn-primary {
+  color: #31344b;
+  background-color: #e6e7ee;
+}
+
+.btn-primary:hover {
+  color: #31344b;
+  background-color: #e6e7ee;
+  border-color: #e6e7ee;
+  box-shadow: inset 2px 2px 5px #b8b9be, inset -3px -3px 7px #FFFFFF;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+  color: #31344b;
+  background-color: #e6e7ee;
+  border-color: #e6e7ee;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+  box-shadow: inset 2px 2px 5px #b8b9be, inset -3px -3px 7px #FFFFFF;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+  color: #31344b;
+  background-color: #e6e7ee;
+  border-color: #e6e7ee;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+  .show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: inset 2px 2px 5px #b8b9be, inset -3px -3px 7px #FFFFFF;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.btn-block + .btn-block {
+  margin-top: 0.5rem;
+}
+
+input[type="submit"].btn-block,
+input[type="reset"].btn-block,
+input[type="button"].btn-block {
+  width: 100%;
+}
+
+.btn:hover {
+  color: #44476A;
+  text-decoration: none;
+}
+
+.btn:focus, .btn.focus {
+  outline: 0;
+  box-shadow: inset 2px 2px 5px #b8b9be, inset -3px -3px 7px #FFFFFF;
+}
+
+.btn.disabled, .btn:disabled {
+  opacity: 0.65;
+  box-shadow: none;
+}
+
+.btn:not(:disabled):not(.disabled):active, .btn:not(:disabled):not(.disabled).active {
+  box-shadow: inset 2px 2px 5px #b8b9be, inset -3px -3px 7px #FFFFFF;
+}
+
+.btn:not(:disabled):not(.disabled):active:focus, .btn:not(:disabled):not(.disabled).active:focus {
+  box-shadow: inset 2px 2px 5px #b8b9be, inset -3px -3px 7px #FFFFFF, inset 2px 2px 5px #b8b9be, inset -3px -3px 7px #FFFFFF;
+}
+
+.btn {
+  position: relative;
+  transition: all 0.2s ease;
+  letter-spacing: 0.025em;
+  font-size: 1rem;
+  border-color: #D1D9E6;
+  box-shadow: 3px 3px 6px #b8b9be, -3px -3px 6px #ffffff;
+}
+
+.subfont {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.font-weight-normal {
+  font-weight: 400;
+}
+
+.btn-wrapper {
+  margin-top: 3rem;
+}
+
+.btn-icon-only {
+  position: relative;
+  width: 2.575rem;
+  height: 2.575rem;
+  padding: 0;
+}
+
+.btn-icon-only span, .btn-icon-only i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.mr-2,
+.mx-2 {
+    margin-right: 0.5rem;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* Add a hover effect if you want */
+.fa:hover {
+  opacity: 0.5;
+}
+
+/* Set a specific color for each brand */
+
+/* Facebook */
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+  border-radius: 0.55rem;
+}
+
+/* Twitter */
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+  border-radius: 0.55rem;
+}
+.fa-google {
+  background: #dd4b39;
+  color: white;
+  border-radius: 0.55rem;
+}
+
+
+.d-block {
+  display: block;
+}
+
+.d-sm-flex {
+        display: flex;
+    }
+
+    .align-items-center {
+      align-items: center;
+  }
+  .justify-content-center {
+    justify-content: center;
+}
+
+.mt-4,
+.my-4 {
+    margin-top: 1.5rem;
+}
+
+
+@media (min-width: 992px) {
+  #doc-index {
+      display: block;
+  }
+
+  .doc-sidebar {
+      display: block;
+      height: calc(100vh - 2rem);
+      width: 15%;
+      overflow:auto;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 2rem;
+      background-color: #f1f1f1;
+      float: left;
+      margin: 0;
+      padding: 0;
+  }
+
+  /* Sidebar links */
+  .doc-sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+    list-style-type:none;
+  }
+
+  /* active current link */
+  .doc-sidebar a.active {
+    background-color: #045aaa88;
+    color: white;
+  }
+
+  /* Links on mouse-over */
+  .doc-sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+
+    /* Position and style the close button (top right corner) */
+  .doc-sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+  }
+
+  .menu {
+    display: block;
+    opacity: 1;
+    pointer-events: all;
+    list-style-type:none;
+  }
+
+  .submenu {
+    display: block;
+    opacity: 2;
+    pointer-events: all;
+    list-style-type:none;
+    padding-left: 15%;
+  }
+
+  .doc-sidebar {
+      font-size: 1rem;
+  }
+}
+
+.main{
+  margin-left: 15%;
+  padding: 1px 16px;
+  position: relative;
+}
+
+/* https://www.w3schools.com/howto/howto_js_collapse_sidebar.asp */
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s; /* If you want a transition effect */
+  padding: 20px;
+}
+
+/* single product card */
+/* .card2 {
+  position: relative;
+  float: left;
+  height: 600px;
+  width: 15%; 
+  padding: 2%;
+  margin: 2%;
+  overflow: hidden
+} */
+
+.img-size{
+  height: 450px;
+  width: 350px;
+}
+
+.add-to-cart-btn a:hover{
+  background-color: #555;
+  color: white;
+}
+
+.nav{
+  display: inline;
+  font-style: italic;
+  margin: 20px;
+  font:30px;
+}
+
+.pignation{
+  list-style: none;
+}
+
+.page-item{
+  display: inline;
+}
+
+.shop_pagination_area{
+  text-align: center;
+}
+
+/* The button used to open the sidebar */
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+/* CSS for the slider */
+/* https://www.w3schools.com/howto/howto_js_rangeslider.asp */
+.slidecontainer {
+  width: 30%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 15px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+  border-radius: 5px;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #d88995; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  border-radius: 100px;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #04AA6D; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.searchcontainer {
+  width: 20%; /* Width of the outside container */
+  margin-left:20px;
+  margin-right:20px;
+}
+
+.sortcontainer {
+  width: 20%; /* Width of the outside container */
+  margin-left:20px;
+  margin-right:20px;
+}
+
+#filter-section{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: small;
+  font-weight: bold;
+  display: flex;
+}
+
+.search-button{
+  /* background-image: "fashionshop/static/images/bg-img/search.png"; */
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  /* put the height and width of your image here */
+  height: 50px;
+  width: 200px;
+  border: none;
+}

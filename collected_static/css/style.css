@@ -1,0 +1,79 @@
+/* Part of the source came from Google Map Api.
+https://console.cloud.google.com/google/maps-apis/build/locator-plus?project=directed-will-347001
+*/
+.footer-links li {
+    display: block;
+    margin-left: -5px;
+}
+
+.footer-links li:hover a {
+    box-shadow: inset 2px 2px 5px #b8b9be, inset -3px -3px 7px #FFFFFF;
+}
+
+.footer-links li a {
+    display: block;
+    border-radius: 0.55rem;
+    padding: 5px;
+}
+
+.footer-links li a:hover {
+    color: inherit !important;
+}
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+.mt-2{
+    margin-top: 0.5rem !important;
+}
+
+.mb-1{
+    margin-bottom: 0.25rem !important;
+}
+.p-2 {
+    padding: 0.5rem !important;
+}
+.col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    flex: 0 0 16.66667%;
+}
+
+.mb-5{
+    margin-bottom: 3rem !important;
+}
+
+.mb-lg-0{
+        margin-bottom: 0 !important;
+    }
+
+.footer{
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.col-lg-4 {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.d-flex {
+    display: flex !important;
+}
+.header_img{
+    height: 150px;
+}

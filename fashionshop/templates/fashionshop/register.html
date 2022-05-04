@@ -1,0 +1,56 @@
+
+{% extends "fashionshop/base.html" %}
+{% block all-item %}
+
+{% load static %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Register</title>
+    <link href="{% static '/css/fashionshop.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+
+<body>
+    <main>
+        <!-- Section -->
+        <section class="min-vh-100">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-6 justify-content-center">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="font_title">Create Account</h2>                               
+                            </div>
+                            <div class="card-body">
+                                <form action="{% url 'register' %}" method="post" class="mt-4">
+                                    <table  class="form-group">
+                                        {% for field in form.visible_fields %}
+                                    <tr>
+                                        <td>{{field.label_tag}}</td>
+                                        <td>{{field}}</td>
+                                        <td class="errorlist">
+                                            {% for error in field.errors %} {{error}} {% endfor %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </table>
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-block btn-primary">Sign in</button>
+                                </form>
+                                </div>
+                                <div class="d-block d-sm-flex justify-content-center align-items-center mt-4">
+                                    <span class="font-weight-normal">
+                                        Already have an account?
+                                        <a href="{% url 'login' %}" class="font-weight-bold">Login here</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+{% endblock %}

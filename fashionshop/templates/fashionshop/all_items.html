@@ -1,0 +1,181 @@
+{% extends "fashionshop/base.html" %}
+{% block all-item %}
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shop</title>
+    <link rel="stylesheet" href="/static/css/fashionshop.css">
+    <!-- !Using some external css for formatting  -->
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="/static/css/core-style.css">
+    <script src="{% static '/js/fashionshop.js' %}"></script>
+    <!-- Plugins js -->
+    <!-- <script src="{% static '/js/plugins.js' %}"></script> -->
+    <!-- Bootstrap js -->
+    <!-- <script src="{% 'static'/js/bootstrap.min.js }"></script> -->
+    <!-- Active js -->
+    <!-- <script src="{% 'static'/js/active.js }"></script> -->
+    <script>
+        window.onload = function(){
+        var slider = document.getElementById("price-slider");
+        var output = document.getElementById("slider-right");
+        output.innerHTML = slider.value; // Display the default slider value
+        }
+
+        function updateSize(id, btnid){    
+
+            var e = document.getElementById(btnid);
+            var size = e.getAttribute('data-size');
+            console.log("size before change", size)
+            var curSize = document.getElementById(id).value;
+
+            console.log("CUR size ", curSize)
+            // 'Setting' data-attributes using setAttribute
+            e.setAttribute('data-size', curSize); // Pesky birds
+            console.log("after size ", e.getAttribute('data-size'))
+        }
+    </script>
+    
+</head>
+
+<body>
+
+
+    <!-- Side bar part-->
+    <div class="doc-sidebar" id="mySidebar">
+        <!-- Close Icon W3School-->
+        <button class="closebtn" onclick="closeNav()">&times;</button>
+        <!-- <a href="javascript:void(0)" onclick="closeNav()">&times;</a> -->
+        <!-- Menu and list of items -->
+        <ul class="menu">
+            <h4 class="font_title" style="padding: 5px;">Category</h4>
+            <li data-toggle="collapse" class="collapsed active">
+                <a href="{% url 'all_items' %}/women">Women</span></a>
+                <ul class="submenu">
+                    <li><a href="{% url 'all_items' %}/women/top">Tops</a></li>
+                    <li><a href="{% url 'all_items' %}/women/bottom">Bottom</a></li>
+                    <li><a href="{% url 'all_items' %}/women/dress">Dress</a></li>
+                    <li><a href="{% url 'all_items' %}/women/shoes">Shoes</a></li>
+                    <li><a href="{% url 'all_items' %}/women/accessories">Accessories</a></li>
+                </ul>
+            </li>
+            <li data-toggle="collapse" class="collapsed active">
+                <a href="{% url 'all_items' %}/men">Men</span></a>
+                <ul class="submenu">
+                    <li><a href="{% url 'all_items' %}/men/top">Tops</a></li>
+                    <li><a href="{% url 'all_items' %}/men/bottom">Bottom</a></li>
+                    <li><a href="{% url 'all_items' %}/men/shoes">Shoes</a></li>
+                    <li><a href="{% url 'all_items' %}/men/accessories">Accessories</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- End of Side bar part -->
+    <main class="main" id="main">
+        <div class="row">
+        <!-- w3school tutorial -->
+        <button class="openbtn" onclick="openNav()">&#9776;</button>
+           <!-- Navigation Section -->
+        <nav>
+            <div class="nav">
+                <span><a href="{% url 'home' %}">Home</a></span>
+                <span>&nbsp;&nbsp;>>&nbsp;&nbsp;</span>
+                <span aria-current="page">All items</span>
+            </div>
+        </nav>
+        <!-- End of Navigation Section -->
+        </div>
+        <br>
+        <div class="main-shop-gallery">
+            <!-- Filters -->
+            <form method="post">
+                <div id="filter-section">
+                    <div class="slidecontainer">
+                        <label for="price-slider">Choose Price Range: 0 - <span id="slider-right"></span></label>
+                        <input type="range" min="1" max="1000" value="1000" class="slider" id="price-slider" name="price-slider" oninput="slider_set_value()">
+                    </div>
+                    <div class="searchcontainer">
+                        <label for="search_text">Keyword to search for:</label><br>
+                        <input type="text" id="search_text" name="search_text">
+                    </div>
+                    <div class="sortcontainer">
+                        <label for="sort_order">Sort:</label><br>
+                        <select name="sort_order" id="sort_order">
+                            <option value="default">Default</option>
+                            <option value="best">Best Seller</option>
+                            <option value="price_low">Price: Low to High</option>
+                            <option value="price_high">Price: High to Low</option>
+                            <option value="rating_high">Rating: High to Low</option>
+                        </select>
+                    </div>
+                    <input type="submit" value="Search" class="search-button">
+                </div>
+                {% csrf_token %}
+            </form>
+            <br>
+            <div class="row">
+                {% for item in items%}
+                <div class="col-12 col-sm-6 col-lg-4 single_gallery_item" id="item_card_{{item.item_id}}">
+                    <div class="product-img">
+                        <a href="{% url 'item' item.item_id %}"><img src="{{item.pictures.item_picture}}" class="img-size"
+                                alt="{{item.item_name}}"></a>
+                        <!-- <div class="product-quicview">
+                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
+                        </div> -->
+                    </div>
+                    <!-- Product description -->
+                    <div class="product-description">
+                        <a href="{% url 'item' item.item_id %}">
+                            <h4 class="product-price" style="color: rgb(41, 40, 40);" id="name_item_{{item.item_id}}">{{item.item_name}}</h4>
+                        </a>
+                        <h4 class="product-price" id="price_item_{{item.price}}">${{item.price}} </h4>
+                        <br>
+                        <p id="description_item_{{item.price}}">{{item.description}}</p>
+                        <br>
+                        <label for="size">Size:</label>
+                        <select class="selected-size" name="size" id="size_item_{{item.item_id}}">
+                            
+                            {% if item.category_genre == "shoes" %}
+                            <option value="5.5">US 5.5</option>
+                            <option value="6">US 6</option>
+                            <option value="6.5">US 6.5</option>
+                            <option value="7">US 7</option>
+                            <option value="7.5">US 7.5</option>
+                            <option value="8">US 8</option>
+                            {% elif item.category_genre == "accessories" %}
+                            <option value="one-size">One-size</option>
+                            {% else %}
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            {% endif %}
+                        </select>
+                        <!-- Add to Cart -->
+                        <a href="#" id="update-cart-main-btn-{{item.item_id}}" onclick="updateSize('size_item_{{item.item_id}}', 'update-cart-main-btn-{{item.item_id}}');" class="add-to-cart-btn update-cart-main" 
+                        data-size="XXX" data-item={{item.item_id}}>ADD TO CART</a>
+                    </div>
+                </div>
+                {%endfor%}
+
+
+            </div>
+        </div>
+        <br>
+        <!-- Cite from Karl -->
+        <!-- <div class="shop_pagination_area">
+            <nav aria-label="Page navigation">
+                <ul class="pagination pagination-sm">
+                    <li class="page-item active"><a class="page-link" href="#">01</a></li>
+                    <li class="page-item"><a class="page-link" href="#">02</a></li>
+                    <li class="page-item"><a class="page-link" href="#">03</a></li>
+                </ul>
+            </nav>
+        </div> -->
+    </main>
+    
+</body>
+
+{% endblock %}
+

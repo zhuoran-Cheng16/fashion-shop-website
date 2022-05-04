@@ -1,0 +1,418 @@
+{% extends "fashionshop/base.html" %}
+{% load static %}
+{% load social_share %}
+
+ <!-- Bootstrap CSS -->
+ {% block css %}
+ <link rel="stylesheet" href="{% static 'css/style_item_page.css'%}">
+
+ {% endblock %}
+
+{% block script %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="{% static '/js/fashionshop.js' %}"></script>
+<script src="{% static '/js/review_item.js' %}"></script>
+
+{% endblock %}
+
+{% block item %}
+<title>Fashion Shop -Item page</title>
+<div id="wrapper">
+
+    <!-- <<<<<<<<<<<<<<<<<<<< Breadcumb Area Start <<<<<<<<<<<<<<<<<<<< -->
+    <div class="breadcumb_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <ol class="breadcrumb d-flex align-items-center">
+                        <li class="breadcrumb-item"><a href="{% url 'all_items' %}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'all_items' %}/{{item.category_gender}}/{{item.category_genre}}">{{item.category_genre}}</a></li>
+                        <li class="breadcrumb-item active">{{item_short_name}}</li>
+                    </ol>
+
+                    <!-- btn -->
+                    <a href="{% url 'all_items' %}" class="backToHome d-block"><i class="fa fa-angle-double-left"></i>
+                        Back to All Item</a>
+                    
+                 
+                    
+                    <br>
+
+                  
+                    <!-- Share Item using django-social-share -->
+                <div class="footer_bottom_area">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="social-share">
+                                
+                                {% post_to_facebook object_or_url "Post to Facebook!" %}
+                                {% post_to_twitter "New Item. Check it out!" object_or_url "Post to Twitter" %}
+                                {% send_email object.title "New Item. Check it out!" object_or_url "Share via email" %}
+                                {% save_to_pinterest object_or_url %}
+                                {% add_pinterest_script %}
+                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <<<<<<<<<<<<<<<<<<<< Breadcumb Area End <<<<<<<<<<<<<<<<<<<< -->
+
+    <!-- <<<<<<<<<<<<<<<<<<<< Single Product Details Area Start >>>>>>>>>>>>>>>>>>>>>>>>> -->
+    <section class="single_product_details_area section_padding_0_100">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 col-md-6">
+                    <div class="single_product_thumb">
+                        <div id="product_details_slider" class="carousel slide" data-ride="carousel">
+
+                            <ol class="carousel-indicators">
+
+                                {% for picture in item.pictures %}
+                                <li class="active" data-target="#product_details_slider"
+                                    data-slide-to={{forloop.counter0}}
+                                    style="background-image: url({{picture.item_picture}});">
+                                </li>
+                                {% endfor%}
+                            </ol>
+
+                            <div class="carousel-inner">
+                                {% for picture,val in zip_pic%}
+                                {% if forloop.first %}
+                                <div class="carousel-item active">
+                                    {% else %}
+                                    <div class="carousel-item">
+                                        {% endif%}
+                                        <a class="gallery_img" href="{{picture.item_picture}}">
+                                            <img class="d-block w-100" src="{{picture.item_picture}}" alt={{val}}>
+                                        </a>
+                                    </div>
+                                    {% endfor%}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="single_product_desc">
+
+                            <h4 class="title"><a href="#">{{item.item_name}}</a></h4>
+
+                            <h4 class="price">$ {{item.price}}</h4>
+                            <p class="available">Available: <span class="text-muted">In Stock</span></p>
+
+                            <div class="single_product_ratings mb-15">
+                   
+                            </div>
+
+                            <!-- Add to Cart  -->
+                            <!-- Make add to cart btn Work -->
+                           
+                            <div class="cart clearfix mb-50 d-flex" >
+                                <table>
+                                    <tr>
+                                        <th>
+                                            <div class="widget size mb-50">
+                                                <h6 class="widget-title">Size</h6>
+                                                <div class="widget-desc">
+                                                    <ul>
+                                                        <input type="hidden" name="current_size" value={{current_size}}
+                                                            id="size">  
+                                                            {% if item.category_genre == "shoes" %}
+                                                                <li><a href="#"
+                                                                        onclick="var effect = document.getElementById('size'); effect.value = '5.5';">5.5</a></li>
+                                                                <li><a href="#"
+                                                                        onclick="var effect = document.getElementById('size'); effect.value = '6';">6</a></li>
+                                                                <li><a href="#"
+                                                                        onclick="var effect = document.getElementById('size'); effect.value = '6.5';">6.5</a></li>
+                                                                <li><a href="#"
+                                                                        onclick="var effect = document.getElementById('size'); effect.value = '7';">7</a></li>
+                                                                <li><a href="#"
+                                                                        onclick="var effect = document.getElementById('size'); effect.value = '7.5';">7.5</a></li>
+                                                                <li><a href="#"
+                                                                        onclick="var effect = document.getElementById('size'); effect.value = '8';">8</a></li>
+                                                            {% elif item.cateogry_genere == "accessories" %}
+                                                                <li><a href="#"
+                                                                    onclick="var effect = document.getElementById('size'); effect.value = 'One-size';">One-size</a></li>
+                                                            {% else %}
+                                                                <li><a href="#"
+                                                                    onclick="var effect = document.getElementById('size'); effect.value = 'S';">S</a></li>
+                                                                <li><a href="#"
+                                                                    onclick="var effect = document.getElementById('size'); effect.value = 'M';">M</a></li>
+                                                                <li><a href="#"
+                                                                    onclick="var effect = document.getElementById('size'); effect.value = 'L';">L</a></li>
+                                                            {% endif %}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <div class="quantity">
+                                                <span class="qty-minus"
+                                                    onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
+                                                        class="fa fa-minus" aria-hidden="true"></i></span>
+                                                <input type="number" class="qty-text" id="qty" step="1" min="1" max="12"
+                                                    name="quantity" value={{quantity}}>
+
+                                                <span class="qty-plus"
+                                                    onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
+                                                        class="fa fa-plus" aria-hidden="true"></i></span>
+                                            </div>
+                                        </th>
+                                        <th>
+
+                                            <button id = "update_signle_btn" type="submit" name="addtocart" value="1" data-num = "1" data-size = "{{current_size}}" data-item="{{id}}"
+                                                data-action="add" class="btn cart-submit d-block update-cart-signle" onclick="changeSizeAndNum();">Add to cart</button>
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div id="accordion" role="tablist">
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="headingOne">
+                                        <h6 class="mb-0">
+                                            <a data-toggle="collapse" href="#collapseOne" aria-expanded="true"
+                                                aria-controls="collapseOne">DETAILS</a>
+                                        </h6>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse show" role="tabpanel"
+                                        aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <p>{{item.description}}} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="headingTwo">
+                                        <h6 class="mb-0">
+                                            <a class="collapsed" data-toggle="collapse" href="#collapseTwo"
+                                                aria-expanded="false" aria-controls="collapseTwo">Material</a>
+                                        </h6>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo"
+                                        data-parent="#accordion">
+                                        <div class="card-body">
+                                            <p>Material: To be filled by our vendor.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="headingThree">
+                                        <h6 class="mb-0">
+                                            <a class="collapsed" data-toggle="collapse" href="#collapseThree"
+                                                aria-expanded="false" aria-controls="collapseThree">Shipping &amp;
+                                                Returns</a>
+                                        </h6>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" role="tabpanel"
+                                        aria-labelledby="headingThree" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <p> Standard Arrives in 5-8 business days</p>
+                                            <p> Orders up to $49.99: $4.95 </p>
+                                            <p> Orders $50 and over: FREE</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- <<<<<<<<<<<<<<<<<<<< Single Product Details Area End >>>>>>>>>>>>>>>>>>>>>>>>> -->
+
+    <!-- <<<<<<<<<<<<<<<<<<<< Single Product Review Area Start >>>>>>>>>>>>>>>>>>>>>>>>> -->
+    <div class="row">
+        <div class="col-12">
+            <div class="section_heading text-center">
+                <h2>Product Review</h2>
+            </div>
+        </div>
+
+    </div>
+    <div class="main_header_area">
+        <div class="container h-100">
+            <div class="col-12">
+                <!-- <<<<<<<<<< Rview Filter Section Area >>>>>>>>>>> -->
+                <nav class="navbar navbar-expand-lg align-items-start">
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#karl-navbar"
+                        aria-controls="karl-navbar" aria-expanded="false" aria-label="Toggle navigation"><span
+                            class="navbar-toggler-icon"><i class="ti-menu"></i></span></button>
+
+                    <div class="collapse navbar-collapse align-items-start collapse" id="karl-navbar">
+                        <ul class="navbar-nav animated" id="nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="karlDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rating</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" onclick="javascript: getList('{{id}}');" >All</a></li>
+                                    <li><a class="dropdown-item" onclick="javascript:getStarRating('{{id}}','5');">&#9733;&#9733;&#9733;&#9733;&#9733;</a>
+                                    </li>
+                                    <li><a class="dropdown-item" onclick="javascript:getStarRating('{{id}}','4');">&#9733;&#9733;&#9733;&#9733;&#9734;</a>
+                                    </li>
+                                    <li><a class="dropdown-item" onclick="javascript:getStarRating('{{id}}','3');">&#9733;&#9733;&#9733;&#9734;&#9734;</a>
+                                    </li>
+                                    <li><a class="dropdown-item" onclick="javascript:getStarRating('{{id}}','2');">&#9733;&#9733;&#9734;&#9734;&#9734;</a>
+                                    </li>
+                                    <li><a class="dropdown-item" onclick="javascript:getStarRating('{{id}}','1');">&#9733;&#9734;&#9734;&#9734;&#9734;</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="karlDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Images</a>
+   
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" onclick="javascript:getList('{{id}}');" >All Review</a></li>
+                                    <li><a class="dropdown-item" onclick="javascript:getPicture('{{id}}');">Review with Image</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+
+                                <a class="nav-link dropdown-toggle" href="#" id="karlDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort:
+                                    select</a>
+
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" onclick="javascript:getList('{{id}}');" >Reset to Default</a></li>
+                                    <li><a class="dropdown-item" onclick="javascript:getHighestRating('{{id}}');" >Highest Rating</a></li>
+                                    <li><a class="dropdown-item" onclick="javascript:getLowestRating('{{id}}');" >Lowest Rating</a></li>
+
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </nav>
+
+            </div>
+            <!-- <<<<<<<<<< Rview Filter Section Area >>>>>>>>>>> -->
+
+        </div>
+    </div>
+    </td>
+
+    <!-- <<<<<<<<<<<<<<<<<<<< Single Product Review Area Start >>>>>>>>>>>>>>>>>>>>>>>>> -->
+
+    <!-- <<<<<< Comment Area Start >>>>>>>-->
+    <div class="cart_area section_padding_0_100 clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="cart-table clearfix">
+                        <p style="font-weight:bold"> This product contains {{item.reviews.count}} reviews</p>
+                        <hr class = "style-eight">
+                    </div>
+                    <!--AJAX goes here-->
+                    <div class='comment_all_section' id="todo-list">
+                        
+                    </div>
+                    <p id = 'id_comment_entry_num'></p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- <<<<<< Comment Area End >>>>>>> -->
+
+
+    <!-- <<<<<< Write a Review Button Start >>>>>>> -->
+    <div class="container">
+
+        <button id="review-hide" class="btn btn-primary" onclick="hide_review()">
+            Write a Review
+        </button>
+
+
+        <div id="review-section" style="display: none;">
+            <div class="section_heading text-center">
+                <h4>Write your Product Review</h4>
+            </div>
+
+            <div class="row">
+                <br>
+                <hr>
+                <form action="{% url 'item' item.item_id %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token%}
+                    <table>
+                        {{form}}
+                    </table>
+                    <br>
+                    <br>
+                    <button id="review-add-button" class="btn btn-primary">
+                        Submit Review
+                    </button>
+
+                </form>
+                <span id="error" class="error"></span>
+            </div>
+
+        </div>
+
+
+    </div>
+    <!-- <<<<<< Write a Review Button End >>>>>>> -->
+    <br><br><br>
+    <!-- Review Button Ends-->
+    <span id="error" class="error">
+        {{error_mess}}
+    </span>
+
+
+
+
+
+
+    <script>
+        function changeSizeAndNum(){
+            var e = document.getElementById('update_signle_btn');
+            
+            var size = e.getAttribute('data-size');
+            console.log("size before change", size)
+            var curSize = document.getElementById('size').value 
+            console.log("CUR size ", curSize)
+            // 'Setting' data-attributes using setAttribute
+            e.setAttribute('data-size',curSize); // Pesky birds
+
+            var num = e.getAttribute('data-num');
+            console.log("num before change", num)
+            var qty = document.getElementById('qty').value;
+            console.log("CUR qty ", qty)
+            e.setAttribute('data-num',qty);
+        }
+
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+            }
+        // Save this user's username so our JS deleteItem() function can determine whether show delete buttons
+        var myUserName = "{{ request.user.username }}"
+
+        // Call getList() as soon as page is finished loading to display the to do list
+        window.onload = getList("{{id}}");
+
+    // ... also call getList every 5 seconds hereafter to update the list
+
+    </script>
+
+
+    <br><br><br>
+    
+
+</div>
+
+{% endblock %}

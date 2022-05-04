@@ -1,0 +1,160 @@
+{% extends "fashionshop/base.html" %}
+{% block cart %}
+
+{% load static %}
+<script type="text/javascript">
+    function showAndHidden() {
+        var value = document.getElementById("shipping_price").getAttribute("value");
+        var text = document.getElementById('ship_pick')
+        if (value === '0.0')
+            show_ship.style.display = 'none';
+        if (value === '0.0')
+            document.getElementById("pickup").style.display = 'block';
+    } 
+</script>
+<title>{%block title%} Checkout {% endblock %}</title>
+
+<body onload="updateShipCheck()">
+    <!-- ****** Checkout Area Start ****** -->
+    <div class="checkout_area section_padding_100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <input type="button" id='ship_pick' class="btn karl-checkout-btn" style="display:block;"
+                        onclick="showAndHidden();"
+                        value="Please check your shipping price first: {{order.shipping_price}}"></input>
+                    <div class="checkout_details_area mt-50 clearfix">
+                        <div class="help-line" style="display:none;" id="pickup">
+                            <h5>You have chosen to pick up your order, our store located at:
+                                <a href="{% url 'store' %}"><i class="ti-headphone-alt"></i>
+                                    <img src="https://fonts.gstatic.com/s/i/googlematerialicons/place/v15/24px.svg">
+                                    Store Location
+                                </a>
+                            </h5>
+                        </div>
+                        <form action="{% url 'checkout' %}" method="POST" style="display:block;" id="show_ship">
+                            <div class="cart-page-heading">
+                                <h5>Shipping Address</h5>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="first_name">First Name <span>*</span></label>
+                                    <input type="text" class="form-control" name="fname" id="first_name"
+                                        value="{{request.user.address.fname}}" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="last_name">Last Name <span>*</span></label>
+                                    <input type="text" class="form-control" name="lname" id="last_name"
+                                        value="{{request.user.address.lname}}" required>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="country">Country <span>*</span></label>
+                                    <select class="custom-select d-block w-100" id="country" name="country">
+                                        <option value="usa">United States</option>
+                                        <option value="uk">United Kingdom</option>
+                                        <option value="ger">Germany</option>
+                                        <option value="fra">France</option>
+                                        <option value="ind">India</option>
+                                        <option value="aus">Australia</option>
+                                        <option value="bra">Brazil</option>
+                                        <option value="cana">Canada</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="street_address">Address <span>*</span></label>
+                                    <input type="text" class="form-control mb-3" id="street_address"
+                                        name="street_address" value="{{request.user.address.street_address}}" required>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="postcode">Postcode <span>*</span></label>
+                                    <input type="text" class="form-control" id="postcode" name="postcode"
+                                        value="{{request.user.address.postcode}}" required>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="city">Town/City <span>*</span></label>
+                                    <input type="text" class="form-control" id="city" name="city"
+                                        value="{{request.user.address.city}}">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="state">Province <span>*</span></label>
+                                    <input type="text" class="form-control" id="state" name="state"
+                                        value="{{request.user.address.state}}">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="phone_number">Phone No <span>*</span></label>
+                                    <input type="number" class="form-control" id="phone_number" name="phone_number"
+                                        min="0" value="{{request.user.address.phone_number}}" required>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <label for="email_address">Email Address <span>*</span></label>
+                                    <input type="email" class="form-control" id="email_address" name="email"
+                                        value="{{request.user.address.email}}" required>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="custom-control custom-checkbox d-block">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck3">
+                                        <label class="custom-control-label" for="customCheck3">Subscribe to our
+                                            newsletter</label>
+                                    </div>
+                                </div>
+                            </div>
+                            {% csrf_token %}
+                            <button type="submit" class="btn karl-checkout-btn">Saved Address</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-5 ml-lg-auto">
+                    <div class="order-details-confirmation">
+
+                        <div class="cart-page-heading">
+                            <h5>Your Order</h5>
+                            <p>The Details</p>
+                        </div>
+
+                        <ul class="order-details-form mb-4">
+                            <li><span><strong>Product</strong></span> <span><strong>Price</strong></span></li>
+                            {% for order_item in items_in_order %}
+                            <li><span>{{order_item.item.item_name}}</span>
+                                <span>${{order_item.item.price|floatformat:2}}</span></li>
+                            {% endfor %}
+                            <li><span><strong>Subtotal</strong></span>
+                                <span>${{order.get_total_price|floatformat:2}}</span></li>
+                            <li><span>Shipping</span> <span id="shipping_price"
+                                    value={{order.shipping_price}}>${{order.shipping_price}}</span></li>
+                            <li><span><strong>Discounts</strong></span><span>-${{order.get_coupon_value|floatformat:2}}</span>
+                            </li>
+                            <li><span><strong>Total</strong></span>
+                                <span><strong>${{order.get_order_total|floatformat:2}}</strong></span></li>
+                        </ul>
+
+
+                        <!-- <div id="accordion" role="tablist" class="mb-4">
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="headingOne">
+                                        <h6 class="mb-0">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck3">
+                                            <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" onclick="initPayPalButton()"><i class="fa fa-circle-o mr-3"></i>Payment Method</a>
+                                        </h6>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion"">
+                                        <div class="card-body">
+                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                        <a href="/payment/{{order.id}}" id="complete" class="btn karl-checkout-btn">Go to payment</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    </div>
+</body>
+
+{% endblock %}

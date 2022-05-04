@@ -1,0 +1,107 @@
+{% extends "fashionshop/base.html" %}
+{% block all-item %}
+
+{% load static %}
+
+<title>Profile</title>
+<link href="{% static '/css/profile.css' %}" rel="stylesheet">
+<style>
+    .secondul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      width: 20%;
+      background-color: #9f9f9f;
+      position:relative;
+      height: 100%;
+      overflow: auto;
+    }
+    
+    li a {
+      display: block;
+      color: #fff;
+      padding: 8px 16px;
+      text-decoration: none;
+    }
+    
+    li a.active {
+      background-color: #ff084e;
+      color: white;
+    }
+    
+    li a:hover:not(.active) {
+      background-color: #3a3a3a;
+      color: white;
+    }
+    table, th, td {
+  border:1px solid black;
+  }
+    </style>
+<body>
+    <div class="cart_area section_padding_100 clearfix">
+                    
+                        <ul class="secondul">
+                            <li><a href="{% url 'my_profile' %}">Account Information</a></li>
+                            <li><a href="{% url 'order' %}">Recent Orders</a></li>
+                            <li><a href="{% url 'address' %}">Saved Address</a></li>
+                        </ul>
+                        <div class="css-page">
+                            <h1 class="title">Order Number: #{{order.transaction_id}}</h1>
+                            <hr class="solid">                  
+                            <div>
+                                <h4 style="font-family: georgia, times, serif; font-size: 20px;">
+                                    Status: {{order.complete}}
+                                </h4>
+                            </div>
+                            <hr class="solid1">
+                     
+                            
+                            <div>
+                                <h4 style="font-family: georgia, times, serif; font-size: 20px;">Ship to:</h4>
+                                <address>
+                                    {{request.user.address.fname}} {{request.user.address.lname}}<br>
+                                    {{request.user.address.street_address}}<br>
+                                    {{request.user.address.city}},
+                                    {{request.user.address.state}},
+                                    {{request.user.address.postcode}}<br>
+                                    {{request.user.address.country}}<br>
+                                    {{request.user.address.phone_number}}<br>
+                                </address>
+                            </div>
+                            <hr class="solid1">
+                            <table class='table_text' style="width:100%">
+                                <tr>
+                                    <td><span><strong>Item</strong></span></td>
+                                    <td><span><strong>Size</strong></span></td>
+                                    <td><span><strong>Price</strong></span></td>
+                                    <td><span><strong>Quantity</strong></span></td>
+                                </tr>
+                                {% for order_item in items_in_order %}
+                                <tr>
+                                    <td>
+                                        <h6>{{order_item.item.item_name}}</h6>
+                                    </td>
+                                    <td class="size"><span>{{order_item.selected_size}}</span></td>
+                                    <td class="price"><span>${{order_item.item.price|floatformat:2}}</span></td>
+                                    <td class="qty">{{order_item.quantity}}
+                                    </td>
+                                </tr>
+                                {% endfor %}   
+                 
+                            </table>
+                            <hr class="solid1">
+                            <ul class="order-details-form mb-4">
+                                <li><span>Subtotal: </span> <span><strong>${{order.get_total_price|floatformat:2}}</strong></span></li>
+                                <li><span>Shipping & Handling</span> <span><strong>${{order.shipping_price}}</strong></span></li>
+                                <li><span>Discounts</span><span><strong>-${{order.get_coupon_value|floatformat:2}}</strong></span></li>
+                                <hr class="solid1">
+                                <li><span><strong>Total</strong></span> <span><strong>${{order.get_order_total|floatformat:2}}</strong></span></li>
+                            </ul>
+                            
+                            
+                        </div>
+    </div>
+</body>
+
+
+{% endblock %}

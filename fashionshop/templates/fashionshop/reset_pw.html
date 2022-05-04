@@ -1,0 +1,37 @@
+{% extends "fashionshop/base.html" %}
+{% block all-item %}
+
+{% load static %}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Password Reset</title>
+<link href="{% static '/css/fashionshop.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<body>
+    <section class="min-vh-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="justify-content-center">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-header">
+                                <h2 class="font_title">Enter Your New Password</h2>
+                            </div>
+                            <div class="row justify-content-center">
+                                <form action="{% url 'reset_pw' %}" method="post" class="align-items-center mt-4">
+                                    {% csrf_token %}
+                                    {{form}}
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+{% endblock %}

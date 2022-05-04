@@ -1,0 +1,69 @@
+{% extends "fashionshop/base.html" %}
+{% block all-item %}
+
+{% load static %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Log in</title>
+    <link href="{% static '/css/fashionshop.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="google-signin-client_id" content="665693168806-eg8nha4r4trub3b469m7uk0fs8c6863n.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+
+<body>
+    <main>
+        <!-- Section -->
+        <section class="min-vh-100">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-6 justify-content-center">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="font_title">Log in to our platform</h2>  
+                            </div>
+                            <div class="card-body">
+                                <form action="{% url 'login' %}" method="post" class="mt-4">
+                                    <table class="form-group">
+                                        {{form}}
+                                    </table>
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-block btn-primary">Sign in</button>
+                                </form>
+                                <div class="subfont">
+                                    <span>or login with</span>
+                                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                                    
+                                    <script>
+                                        function onSignIn(googleUser) {
+                                            var profile = googleUser.getBasicProfile();
+                                            console.log('ID: ' + profile.getId()); 
+                                            console.log('username: ' + profile.getName());
+                                            console.log('E-mail: ' + profile.getEmail()); 
+                                            }
+                                      </script>
+                                </div>
+                                <div class="d-block d-sm-flex align-items-center mt-4">
+                                    <span class="font-weight-normal">
+                                        Not registered?
+                                        <a href="{% url 'register' %}" class="font-weight-bold">
+                                            <button class="btn btn-block btn-primary" type="button">Create account</button></a>
+                                    </span>
+                                </div>
+                                <div class="d-block d-sm-flex align-items-center mt-4">
+                                    <span class="font-weight-normal">
+                                        Forgotten your password?
+                                        <a href="{% url 'reset_pw' %}" class="font-weight-bold">
+                                            <button class="btn btn-primary" type="submit">Reset Password</button></a>
+                                    </span>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+{% endblock %}

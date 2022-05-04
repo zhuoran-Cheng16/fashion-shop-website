@@ -1,0 +1,76 @@
+{% extends "fashionshop/base.html" %}
+{% block all-item %}
+
+{% load static %}
+
+<title>Profile</title>
+<link href="{% static '/css/profile.css' %}" rel="stylesheet">
+<style>
+    .secondul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      width: 20%;
+      background-color: #9f9f9f;
+      position:relative;
+      height: 100%;
+      overflow: auto;
+    }
+    
+    li a {
+      display: block;
+      color: #fff;
+      padding: 8px 16px;
+      text-decoration: none;
+    }
+    
+    li a.active {
+      background-color: #ff084e;
+      color: white;
+    }
+    
+    li a:hover:not(.active) {
+      background-color: #3a3a3a;
+      color: white;
+    }
+    </style>
+<body>
+    <div class="cart_area section_padding_100 clearfix">
+                    
+                        <ul class="secondul">
+                            <li><a href="{% url 'my_profile' %}">Account Information</a></li>
+                            <li><a href="{% url 'order' %}">Recent Orders</a></li>
+                            <li><a class="active" href="{% url 'address' %}">Saved Address</a></li>
+                        </ul>
+              <div class="css-page">
+                <h1 class="title">Saved Address</h1>
+                <hr class="solid">
+                <form action="{% url 'address' %}"  method="POST">
+                    <label for="fname" class="input_text">First Name:
+                    <input type="text" id="fname" name="fname" value="{{request.user.address.fname}}"></input></label>
+                    <label for="lname" class="input_text">Last Name:
+                        <input type="text" id="lname" name="lname" value="{{request.user.address.lname}}"></input></label>
+                    <label for="email" class="input_text">Email:
+                        <input type="text" id="email" name="email" value="{{request.user.address.email}}"></input></label>
+                    <label for="street_address" class="input_text">Address:
+                        <input type="text" id="street_address" name="street_address" value="{{request.user.address.street_address}}"></input></label>
+                    <label for="city" class="input_text">City:
+                        <input type="text" id="city" name="city" value="{{request.user.address.city}}"></input></label>
+                    <label for="state" class="input_text">State:
+                        <input type="text" id="state" name="state" value="{{request.user.address.state}}"></input></label>
+                    <label for="country" class="input_text">Country:
+                        <input type="text" id="country" name="country" value="{{request.user.address.country}}"></input></label>
+                    <label for="phone_number" class="input_text">Phone:
+                        <input type="text" id="phone_number" name="phone_number" value="{{request.user.address.phone_number}}"></input></label>
+                    <label for="postcode" class="input_text">Post Code:
+                        <input type="text" id="postcode" name="postcode" value="{{request.user.address.postcode}}"></input></label>
+                
+                {% csrf_token %}
+                <button type="submit" class="btn">Changed Saved Address</button>
+            </form>
+            </div>
+    </div>
+</body>
+
+
+{% endblock %}
