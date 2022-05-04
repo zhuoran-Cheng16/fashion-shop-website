@@ -23,7 +23,7 @@ Main item page             |  Review page
 ![alt text](https://github.com/zhuoran-Cheng16/fashion-shop-website/blob/main/img/single.png?raw=true) |  ![alt text](https://github.com/zhuoran-Cheng16/fashion-shop-website/blob/main/img/review.png?raw=true)
 
 ### Shopping Bag Page:<br>
-![alt text](https://github.com/zhuoran-Cheng16/fashion-shop-website/blob/main/img/main.png?raw=true)
+![alt text](https://github.com/zhuoran-Cheng16/fashion-shop-website/blob/main/img/bag.png?raw=true)
 
 
 ### Checkout Page/Payment Page:<br> 
